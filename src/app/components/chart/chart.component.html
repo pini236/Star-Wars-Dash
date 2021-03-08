@@ -1,3 +1,5 @@
-<p>
-  chart works!
-</p>
+<div class="column-chart">
+  <ul class="plot-container">
+    <li *ngFor="let planet of planets" [attr.data-cp-size]="planet.populationPercentage">{{planet.name}} : {{planet.population}}</li>
+  </ul>
+</div>

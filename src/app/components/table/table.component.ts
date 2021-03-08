@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { forkJoin } from 'rxjs';
 import { Vehicle } from 'src/app/models/vehicle';
 import { VehicleTableModel } from 'src/app/models/vehicle-table-model';
@@ -15,6 +15,7 @@ export class TableComponent implements OnInit {
   dataSource = new MatTableDataSource([]);
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   displayedColumns: string[] = ['name', 'populationSum', 'planets', 'pilots'];
   constructor(private dataService: DataService) { }
@@ -23,6 +24,8 @@ export class TableComponent implements OnInit {
       this.dataService.getAllVehicles().subscribe((res) => {
         this.dataSource.data = this.mapData(res);
         this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+
       })
     })
   }

@@ -19,7 +19,9 @@ export class ApiService {
   }
   getPlanets(nextURL: string = null): Observable<BaseModel<Planet>> {
     return this.http.get<BaseModel<Planet>>(nextURL || `${this.baseURL}planets/`);
-
+  }
+  searchPlanet(name: string): Observable<BaseModel<Planet>> {
+    return this.http.get<BaseModel<Planet>>(`${this.baseURL}planets/?search=${name}`);
   }
   getVehicles(nextURL: string = null): Observable<BaseModel<Vehicle>> {
     return this.http.get<BaseModel<Vehicle>>(nextURL || `${this.baseURL}vehicles/`);

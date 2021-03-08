@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { Pilot } from '../models/pilot';
 import { Planet } from '../models/planet';
 import { Vehicle } from '../models/vehicle';
+import { BaseModel } from '../models/base-model';
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +47,9 @@ export class DataService {
       }, []),
       catchError((error => of(error)))
     );
+  }
+  public getPlanet(name: string): Observable<Planet> {
+    return this.apiService.searchPlanet(name).pipe(map((res) => res.results[0]));
   }
   topPopulationByVehicle(vehicle: string) {
 
