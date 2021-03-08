@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort, MatTableDataSource } from '@angular/material';
 import { forkJoin } from 'rxjs';
-import { Pilot } from 'src/app/models/pilot';
-import { Planet } from 'src/app/models/planet';
 import { Vehicle } from 'src/app/models/vehicle';
 import { VehicleTableModel } from 'src/app/models/vehicle-table-model';
 import { DataService } from 'src/app/services/data.service';
@@ -13,14 +12,17 @@ import { DataService } from 'src/app/services/data.service';
 })
 
 export class TableComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'populationSum', 'planets', 'pilots'];
-  dataSource = [];
-  constructor(private dataService: DataService) { }
+  dataSource = new MatTableDataSource([]);
 
+  @ViewChild(MatSort) sort: MatSort;
+
+  displayedColumns: string[] = ['name', 'populationSum', 'planets', 'pilots'];
+  constructor(private dataService: DataService) { }
   ngOnInit() {
     forkJoin([this.dataService.getAllPeople(), this.dataService.getAllPlanets()]).subscribe((res) => {
       this.dataService.getAllVehicles().subscribe((res) => {
-        this.dataSource = this.mapData(res);
+        this.dataSource.data = this.mapData(res);
+        this.dataSource.sort = this.sort;
       })
     })
   }

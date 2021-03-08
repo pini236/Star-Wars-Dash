@@ -1,19 +1,19 @@
-<table *ngIf="dataSource.length>0" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
     <td mat-cell *matCellDef="let vehicle"> {{vehicle.name}} </td>
   </ng-container>
   <!-- Sum of population Column -->
   <ng-container matColumnDef="populationSum">
-    <th mat-header-cell *matHeaderCellDef> Sum of Population </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Sum of Population </th>
     <td mat-cell *matCellDef="let vehicle"> {{vehicle.populationSum}} </td>
   </ng-container>
 
   <!-- Planets Populations Column -->
   <ng-container matColumnDef="planets">
-    <th mat-header-cell *matHeaderCellDef> Planets Populations </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Planets Populations </th>
     <td mat-cell *matCellDef="let vehicle">
       <ng-container *ngFor="let planet of vehicle.planets">
         {{planet.name}} : {{planet.population}}
@@ -23,7 +23,7 @@
 
   <!-- Pilots Column -->
   <ng-container matColumnDef="pilots">
-    <th mat-header-cell *matHeaderCellDef> Pilots </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Pilots </th>
     <td mat-cell *matCellDef="let vehicle">
       <ng-container *ngFor="let pilot of vehicle.pilots">
         {{pilot}}
