@@ -1,10 +1,10 @@
 a {
   text-decoration: none;
-  color: white;
+  color:rgb(253,242,83);
 }
 
 a:hover, a:active{
-  color: lightgray;
+  color:rgb(253, 246, 145);
 }
 
 .navigation-items{
@@ -21,4 +21,7 @@ mat-toolbar{
   mat-toolbar{
       border-radius: 0px;
   }
+}
+.mat-toolbar.mat-primary{
+  background-color: #0C0901;
 }
